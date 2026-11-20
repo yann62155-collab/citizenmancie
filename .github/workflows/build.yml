@@ -1,0 +1,42 @@
+name: Build Citizen Mancie
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Java 21 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Compilation
+        run: gradle build --no-daemon
+
+      - name: Artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: citizenmancie
+          path: build/libs/citizenmancie-*.jar
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Citizen Mancie (build ${{ github.run_number }})
+          files: build/libs/citizenmancie-*.jar

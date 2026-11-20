@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "citizenmancie"
+version = "1.0.0"
+displayName = "Citizen Mancie"
+authors = "Ishawakiii"
+description = '''
+Mancie pour le serveur RP Citizen : Pyromancie, Luminomancie, Hématomancie.
+Roulette des sorts sur la touche U. Seul le staff peut enseigner un sort.
+'''
+
+[[dependencies.citizenmancie]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1.215,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.citizenmancie]]
+modId = "minecraft"
+type = "required"
+versionRange = "[1.21.1]"
+ordering = "NONE"
+side = "BOTH"
