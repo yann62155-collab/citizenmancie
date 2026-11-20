@@ -3,8 +3,8 @@
 Mod NeoForge **21.1.215** / Minecraft **1.21.1** / Java 21 pour le serveur RP Citizen.
 
 ## Joueurs
-- **Maintenir U** : la roulette s'ouvre, vise un sort à la souris, **relâche U** pour le lancer.
-- Appui bref sur U : la roulette reste ouverte → clic gauche (ou U) pour lancer, clic droit / Échap pour fermer.
+- **Maintenir G** : la roulette s'ouvre, vise un sort à la souris, **relâche G** pour le lancer.
+- Appui bref sur G : la roulette reste ouverte → clic gauche (ou G) pour lancer, clic droit / Échap pour fermer.
 - `/sorts` : voir son grimoire.
 - `/sort <id>` : lancer un sort sans la roulette (joueurs console / Bedrock).
 - On ne peut **jamais** apprendre un sort seul : seul le staff l'enseigne.
@@ -37,6 +37,6 @@ Mancies valides pour `/mancie ecole` : `pyromancie`, `luminomancie`, `hematomanc
 
 ## Compilation
 Pousser sur la branche `main` du dépôt GitHub : GitHub Actions compile et publie le `.jar` dans **Releases**.
-En local : `./gradlew build` → `build/libs/citizenmancie-1.0.0.jar`.
+En local : `./gradlew build` → `build/libs/citizenmancie-1.0.1.jar`.
 
 À installer sur le **serveur** et chez les **joueurs PC** (roulette). Les joueurs sans le mod peuvent quand même se connecter et utiliser `/sort`.

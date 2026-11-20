@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Roulette des sorts : on maintient U, on vise un sort avec la souris, on relâche U pour le lancer.
+ * Roulette des sorts : on maintient G, on vise un sort avec la souris, on relâche G pour le lancer.
  * Un clic gauche lance aussi le sort survolé. Échap ferme sans rien lancer.
  */
 public class SpellWheelScreen extends Screen {
@@ -37,7 +37,7 @@ public class SpellWheelScreen extends Screen {
     private int hovered = -1;
     private boolean done = false;
     private int age = 0;
-    /** Appui bref sur U : la roulette reste ouverte, on lance par clic ou nouvel appui sur U. */
+    /** Appui bref sur G : la roulette reste ouverte, on lance par clic ou nouvel appui sur G. */
     private boolean toggleMode = false;
 
     public SpellWheelScreen() {
@@ -202,7 +202,7 @@ public class SpellWheelScreen extends Screen {
             drawCentered(g, info, cx, y + 11, 0xFFB8AE95);
             drawCentered(g, s.description(), cx, y + 22, 0xFFE8DDBF);
         } else {
-            drawCentered(g, "Vise un sort, relâche U pour le lancer", cx, (int) (cy + OUTER + 12), 0xFFB8AE95);
+            drawCentered(g, "Vise un sort, relâche " + ClientEvents.ROULETTE.getTranslatedKeyMessage().getString() + " pour le lancer", cx, (int) (cy + OUTER + 12), 0xFFB8AE95);
         }
     }
 

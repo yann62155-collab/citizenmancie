@@ -16,7 +16,7 @@ public final class ClientEvents {
     public static final KeyMapping ROULETTE = new KeyMapping(
             "key.citizenmancie.roulette",
             InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_U,
+            GLFW.GLFW_KEY_G,
             "key.categories.citizenmancie");
 
     private ClientEvents() {}
@@ -36,7 +36,7 @@ public final class ClientEvents {
             Minecraft mc = Minecraft.getInstance();
             if (mc.player == null) return;
             while (ROULETTE.consumeClick()) {
-                // Joueur sans aucun sort : la touche U ne fait strictement rien.
+                // Joueur sans aucun sort : la touche G ne fait strictement rien.
                 if (mc.screen != null || ClientSpellData.spells().isEmpty()) continue;
                 mc.setScreen(new SpellWheelScreen());
             }

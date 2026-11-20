@@ -181,7 +181,7 @@ public final class MancieCommands {
         target.sendSystemMessage(Component.literal("✦ Le staff t'a enseigné un sort de " + s.mancie().displayName() + " : ")
                 .withColor(GOLD)
                 .append(Component.literal(s.displayName()).withColor(s.mancie().rgb()))
-                .append(Component.literal(" (maintiens U pour la roulette)").withStyle(ChatFormatting.GRAY)));
+                .append(Component.literal(" (maintiens G pour la roulette)").withStyle(ChatFormatting.GRAY)));
         target.level().playSound(null, target.getX(), target.getY(), target.getZ(),
                 SoundEvents.PLAYER_LEVELUP, SoundSource.PLAYERS, 0.8f, 1.3f);
     }
