@@ -10,6 +10,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -96,7 +97,7 @@ public final class SpellCaster {
         line(p, hit.end(), ParticleTypes.FLAME);
         sound(p, SoundEvents.BLAZE_SHOOT, 1.2f);
         if (hit.target() != null) {
-            hit.target().hurt(p.damageSources().indirectMagic(p, p), 5f);
+            damage(p, hit.target(), 5f);
             hit.target().setRemainingFireTicks(100);
             level(p).sendParticles(ParticleTypes.LAVA, hit.end().x, hit.end().y, hit.end().z, 6, 0.2, 0.2, 0.2, 0);
         }
@@ -106,7 +107,7 @@ public final class SpellCaster {
     private static boolean embrasement(ServerPlayer p) {
         ServerLevel lvl = level(p);
         for (LivingEntity e : around(p, 5)) {
-            e.hurt(p.damageSources().indirectMagic(p, p), 2f);
+            damage(p, e, 2f);
             e.setRemainingFireTicks(80);
         }
         ring(p, 5, ParticleTypes.FLAME);
@@ -167,7 +168,7 @@ public final class SpellCaster {
             return false;
         }
         line(p, hit.end(), BLOOD);
-        hit.target().hurt(p.damageSources().indirectMagic(p, p), 4f);
+        damage(p, hit.target(), 4f);
         p.heal(4f);
         sound(p, SoundEvents.WARDEN_HEARTBEAT, 1.2f);
         return true;
@@ -180,7 +181,7 @@ public final class SpellCaster {
             return false;
         }
         line(p, hit.end(), BLOOD);
-        hit.target().hurt(p.damageSources().indirectMagic(p, p), 8f);
+        damage(p, hit.target(), 8f);
         level(p).sendParticles(ParticleTypes.DAMAGE_INDICATOR, hit.end().x, hit.end().y, hit.end().z, 6, 0.2, 0.2, 0.2, 0.1);
         sound(p, SoundEvents.PLAYER_ATTACK_SWEEP, 0.7f);
         return true;
@@ -195,6 +196,21 @@ public final class SpellCaster {
     }
 
     // ------------------------------------------------------------------ Outils
+
+    /**
+     * Dégâts d'un sort. Sur un joueur, on utilise une source « magie » sans attaquant :
+     * le sort blesse donc les joueurs même si le PvP est désactivé sur le serveur.
+     */
+    private static void damage(ServerPlayer caster, LivingEntity target, float amount) {
+        DamageSource src = target instanceof Player
+                ? caster.damageSources().magic()
+                : caster.damageSources().indirectMagic(caster, caster);
+        target.hurt(src, amount);
+        if (target instanceof ServerPlayer victim && victim != caster) {
+            victim.displayClientMessage(Component.literal("Tu es frappé par la mancie de " + caster.getGameProfile().getName() + " !")
+                    .withColor(0xB0141E), true);
+        }
+    }
 
     private record Hit(Vec3 end, LivingEntity target) {}
 

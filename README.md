@@ -33,10 +33,11 @@ Mod NeoForge **21.1.215** / Minecraft **1.21.1** / Java 21 pour le serveur RP Ci
 | | `pacte_de_sang` | Coûte 3 cœurs : Force II + Vitesse 20 s | 60 s |
 
 Aucun sort ne met le feu aux blocs (sécurité pour les villes en bois).
+Les sorts blessent aussi les joueurs, même si le PvP est désactivé sur le serveur.
 Mancies valides pour `/mancie ecole` : `pyromancie`, `luminomancie`, `hematomancie`.
 
 ## Compilation
 Pousser sur la branche `main` du dépôt GitHub : GitHub Actions compile et publie le `.jar` dans **Releases**.
-En local : `./gradlew build` → `build/libs/citizenmancie-1.0.1.jar`.
+En local : `./gradlew build` → `build/libs/citizenmancie-1.0.2.jar`.
 
 À installer sur le **serveur** et chez les **joueurs PC** (roulette). Les joueurs sans le mod peuvent quand même se connecter et utiliser `/sort`.
